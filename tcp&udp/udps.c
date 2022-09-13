@@ -42,7 +42,7 @@ int main(int argc,char** argv)
 	memset(send_buf,0,2048);
 	memset(recv_buf,0,2048);
 	
-    //   opt = SO_REUSEADDR;
+      opt = SO_REUSEADDR;
       
 
       if (-1==(sockfd=socket(AF_INET,SOCK_DGRAM,0)))
@@ -50,7 +50,7 @@ int main(int argc,char** argv)
 	 perror("create listen socket error\n");
 	 exit(1);
       }
-    //   setsockopt(listend,SOL_SOCKET,SO_REUSEADDR,&opt,sizeof(opt));
+      setsockopt(sockfd,SOL_SOCKET,SO_REUSEADDR,&opt,sizeof(opt));
 	
 	
 	
@@ -94,8 +94,7 @@ int main(int argc,char** argv)
    	#endif
 	int len=(sizeof(client));
 	recvnum=recvfrom(sockfd,recv_buf,sizeof(recv_buf),0,(struct sockaddr*)&client,&len);
-	// cc = recvfrom(server_sock, buf, MAXBUF, 0, 
-    //         (struct sockaddr *)&client_addr, &addr_size);
+	
 	sendnum = sprintf(send_buf,"hello,the guest from %s\n",inet_ntoa(client.sin_addr));
 
        if ( 0 >sendto(sockfd,send_buf,sendnum,0,(struct sockaddr*)&client,sizeof(client)))
