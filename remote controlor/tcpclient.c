@@ -73,15 +73,10 @@ while(1){
 
 
 	printf("input>>>");
-	//gets(send_buf);
 	fgets(send_buf,2048,stdin);
-
         #ifdef DEBUG
 		printf("%s\n",send_buf);
   	#endif 
-
-	//sprintf(send_buf,"i am lg,thank for your servering\n");
-
 	if (0>=(len=send(sockfd,send_buf,strlen(send_buf),0)))
 	{
 		perror("send data error\n");
@@ -96,7 +91,6 @@ while(1){
 		close(sockfd);
 		exit(1);
 	}
-	
 	recv_buf[len]='\0';
 	if(strstr(recv_buf,"quit"))
         {
