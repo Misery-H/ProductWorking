@@ -1,4 +1,3 @@
-
 #include<stdlib.h>
 #include<stdio.h>
 #include<sys/socket.h>
@@ -12,6 +11,7 @@
 #define ADDR "127.0.0.1"
 #define MAX  65535
 #define MIN  0
+
 void print_usage(char * cmd)
 {
 	fprintf(stderr," %s usage:\n",cmd);
@@ -66,23 +66,24 @@ int main(int argc,char** argv)
         port_max=atoi(argv[3]);
         addr=argv[1];
     }else
-    {
+    {   
         print_usage(argv[0]);
 		exit(1);
     }
+
+    
 	while(port_min<=port_max){
         
         if(scan(port_min,addr)==0){
-            // printf("in\n");
             printf("%d:",port_min);
             sptr = getservbyport(htons(port_min),NULL);
-            // printf("in\n");
-            // puts(sptr->s_name);
             if (sptr==NULL)
             {
                 printf("UNKNOWN\n");
             }
-            else{printf("%s\n",sptr->s_name);}
+            else{
+                printf("%s\n",sptr->s_name);
+            }
             
         }
         port_min++;
