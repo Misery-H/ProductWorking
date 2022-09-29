@@ -24,7 +24,7 @@ int main(int argc,char**argv)
 	else 
 	{
 		sleep(10);
-		execlp("ls","ls",argv[1],(char*)NULL);
+		execlp(argv[1],argv[1],argv[2],(char*)NULL);
 		_exit(0);
 
 	}
